@@ -44,4 +44,10 @@ This project aims to develop and evaluate machine learning models for predicting
 ## Conclusion
 This project successfully implemented machine learning models to predict voter behavior based on socio-economic factors. The use of **Random Forest** and the **batch-average loss function** proved effective in understanding voting tendencies without individual-level data. Future improvements include incorporating more demographic factors and refining model accuracy through enhanced data integration.
 
+Integrated income data with geographic information to predict voter behavior and improve model accuracy using batch processing to combine various data sources.
+-	Collaborated with team members to analyze variables such as gender, age, and education in other states, including Texas, to broaden the understanding of voting patterns across regions.
+-	Utilized Python and GIS tools to calculate geographic centroids for electoral districts, aligning them with precincts, and analyzed the correlation between income levels and voting outcomes.
+-	Compared various ML algorithms, including Random Forest, Linear Regression, and SVR. The Random Forest model showed the highest predictive accuracy with an RMSE of 0.0797, outperforming other models.
+
+
 
