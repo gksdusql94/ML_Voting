@@ -25,6 +25,7 @@ This project investigates voter behavior using income data from Washington State
 ### 5. `240322_improved_deep_voting_model.ipynb`
 - Improved deep learning model (DeepNN) with batch normalization and dropout layers to prevent overfitting and capture complex relationships between income and voting patterns.
 
+
 ### 6. `240417_different_eval.ipynb`
 - Introduces varied evaluation metrics (RMSE, MAE, R²) and cross-validation methods to ensure the model's robustness and improve overall result accuracy.
 
@@ -41,16 +42,74 @@ This project investigates voter behavior using income data from Washington State
 3. **SVR (Support Vector Regression)**: Moderate performance, capturing nonlinearity.
 
 4. **Simple Deep Learning (DeepNN)**: Incorporates advanced layers to prevent overfitting and capture intricate patterns in data.
+
+```python
+import torch.nn as nn
+import torch.optim as optim
+# Define SimpleNN class
+class SimpleNN(nn.Module):
+    def __init__(self):
+        super(SimpleNN, self).__init__()
+        self.fc1 = nn.Linear(20, 32)
+        self.fc2 = nn.Linear(32, 1)
+        self.relu = nn.ReLU()
+
+    def forward(self, x):
+        x = self.relu(self.fc1(x))
+        x = self.fc2(x)
+        return x
+
+# Initialize model, loss, and optimizer
+simple_model = SimpleNN()
+criterion = nn.MSELoss()
+optimizer = optim.SGD(simple_model.parameters(), lr=0.001)
+```
+
 5. **Improved Deep Learning (DeepNN)**
+
+```python
+# Define DeepNN class with BatchNorm and Dropout
+class DeepNN(nn.Module):
+    def __init__(self):
+        super(DeepNN, self).__init__()
+        self.fc1 = nn.Linear(20, 32)
+        self.bn1 = nn.BatchNorm1d(32)
+        self.fc2 = nn.Linear(32, 64)
+        self.bn2 = nn.BatchNorm1d(64)
+        self.fc3 = nn.Linear(64, 64)
+        self.bn3 = nn.BatchNorm1d(64)
+        self.fc4 = nn.Linear(64, 1)
+        self.relu = nn.ReLU()
+        self.dropout = nn.Dropout(0.5)
+
+    def forward(self, x):
+        x = self.relu(self.bn1(self.fc1(x)))
+        x = self.relu(self.bn2(self.fc2(x)))
+        x = self.dropout(x)
+        x = self.relu(self.bn3(self.fc3(x)))
+        x = self.fc4(x)
+        return x
+```
+# Initialize improved deep learning model
+deep_model = DeepNN()
 
 ###  Evaluation Metrics
 - Metrics such as RMSE, MAE, and R² are used to compare model performances, while cross-validation ensures generalization across different data subsets.
 ```python
-from sklearn.metrics import mean_squared_error, mean_absolute_error, r2_score
+# Training loop
+for epoch in range(500):
+    optimizer.zero_grad()
+    outputs = model(X_train)
+    loss = criterion(outputs, y_train)
+    loss.backward()
+    optimizer.step()
+    if epoch % 10 == 0:
+        print(f'Epoch [{epoch+1}/500], Loss: {loss.item()}')
 
-rmse = np.sqrt(mean_squared_error(y_test, y_pred_rf))
-mae = mean_absolute_error(y_test, y_pred_rf)
-r2 = r2_score(y_test, y_pred_rf)
+# Evaluation
+y_pred = model(X_test).detach().numpy()
+rmse = np.sqrt(mean_squared_error(y_test.numpy(), y_pred))
+print(f'RMSE: {rmse}')
 ```
 ---
 
