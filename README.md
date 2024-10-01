@@ -1,5 +1,6 @@
 # 🗳️ Machine Learning Analysis of Voting Tendencies by Electoral District  
 **Income-Based Voter Behavior in Washington State**
+**Author:** Yeonbi Han  
 
 ## 📁 Abstract  
 This project investigates voter behavior using income data from Washington State, employing machine learning to predict voting patterns. The model integrates geographical and income data, improving voter prediction models using batch processing. Collaborating with team members focusing on gender, education, and age-based studies in other states, this project aims to inform policymakers by providing insights into complex electoral dynamics.
