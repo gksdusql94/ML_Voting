@@ -58,8 +58,26 @@ for idx, row in overlap_precincts.iterrows():
 ```
 ###  Model Development and Testing
 1. **Linear Regression & Polynomial Regression**: Simple models as a baseline.
+```python
+from sklearn.linear_model import LinearRegression # LInear Regression
+linear_model = LinearRegression()
+linear_model.fit(X_train_np, y_train_np)
+```
+
 2. **Random Forest**: Best performance, capturing nonlinear relationships in voting patterns.
+```python
+from sklearn.ensemble import RandomForestRegressor # Random Forest Regressor
+random_forest_model = RandomForestRegressor(n_estimators=100, random_state=42)
+random_forest_model.fit(X_train_np, y_train_np)
+```
+
 3. **SVR (Support Vector Regression)**: Moderate performance, capturing nonlinearity.
+
+```python
+from sklearn.svm import SVR # Support Vector Regressor(SVR)
+svr_model = SVR(kernel='rbf')
+svr_model.fit(X_train_np, y_train_np)
+```
 
 4. **Simple Deep Learning (DeepNN)**: Incorporates advanced layers to prevent overfitting and capture intricate patterns in data.
 
