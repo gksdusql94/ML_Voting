@@ -196,7 +196,43 @@ deep_model = DeepNN()
 
 ###  Evaluation Metrics
 - Metrics such as RMSE, MAE, and R² are used to compare model performances, while cross-validation ensures generalization across different data subsets.
+```python
+for i, (val_X, val_y) in enumerate(county_dataloader2):
+    if i >= 32:
+        start_time = time.time()
 
+        features = torch.tensor(val_X)
+        target = torch.tensor(val_y)
+
+        model.train()
+        outputs = model(features)
+
+        # Loss
+        loss = custom_loss(outputs, target)
+        losses1.append(loss.item()) # Store loss in losses1
+
+        # RMSE, MAE, R^2
+        actuals = target.cpu().numpy()  # Actual
+        predictions = outputs.detach().cpu().numpy()  # Prediction
+        rmse_scores.append(np.sqrt(mean_squared_error(actuals, predictions)))
+        mae_scores.append(mean_absolute_error(actuals, predictions))
+        r2_scores.append(r2_score(actuals, predictions))
+
+        # Optimizer backing and Zero
+        optimizer.zero_grad()
+        loss.backward()
+        optimizer.step()
+
+        # Recoding the time
+        end_time = time.time()
+        timestamps1.append(end_time - start_time)  # Store time in timestamps1
+        num_batches += 1
+
+# Evaluation
+print("Average RMSE:", np.mean(rmse_scores))
+print("Average MAE:", np.mean(mae_scores))
+print("Average R^2:", np.mean(r2_scores))
+```
 ---
 
 ##  Results
