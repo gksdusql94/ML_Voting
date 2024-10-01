@@ -22,7 +22,28 @@ base_map = census_blocks.plot(column='relative_error',legend=True, figsize=(12, 
 
 ### 3. `240308 YB Voting_modeling.ipynb`
 - Implements a basic neural network model (SimpleNN) with income data to predict voting outcomes using preprocessing and normalization techniques.
+```python
+# Training loop
+for epoch in range(500):
+    optimizer.zero_grad()
+    outputs = model(X_train)
+    loss = criterion(outputs, y_train)
+    loss.backward()
+    optimizer.step()
+    if epoch % 10 == 0:
+        print(f'Epoch [{epoch+1}/500], Loss: {loss.item()}')
+plt.plot(losses[10:], label='Training Loss') #The code plots only the data points for the training loss after excluding the first 10 epochs.
+plt.xlabel('Epoch')
+plt.ylabel('Loss')
+plt.legend()
+plt.show()
 
+# Evaluation
+y_pred = model(X_test).detach().numpy()
+rmse = np.sqrt(mean_squared_error(y_test.numpy(), y_pred))
+print(f'RMSE: {rmse}')
+```
+![image](https://github.com/user-attachments/assets/ab9c81c6-e07d-4d3d-8713-86c39c0fd773)
 ### 4. `240322_different_ml.ipynb`
 - Compares models like Linear Regression, Polynomial Regression, Random Forest, and SVR. The Random Forest model delivered the best performance with an RMSE of 0.0797.
 
@@ -175,28 +196,6 @@ deep_model = DeepNN()
 
 ###  Evaluation Metrics
 - Metrics such as RMSE, MAE, and R² are used to compare model performances, while cross-validation ensures generalization across different data subsets.
-```python
-# Training loop
-for epoch in range(500):
-    optimizer.zero_grad()
-    outputs = model(X_train)
-    loss = criterion(outputs, y_train)
-    loss.backward()
-    optimizer.step()
-    if epoch % 10 == 0:
-        print(f'Epoch [{epoch+1}/500], Loss: {loss.item()}')
-plt.plot(losses[10:], label='Training Loss') #The code plots only the data points for the training loss after excluding the first 10 epochs.
-plt.xlabel('Epoch')
-plt.ylabel('Loss')
-plt.legend()
-plt.show()
-
-# Evaluation
-y_pred = model(X_test).detach().numpy()
-rmse = np.sqrt(mean_squared_error(y_test.numpy(), y_pred))
-print(f'RMSE: {rmse}')
-```
-![image](https://github.com/user-attachments/assets/ab9c81c6-e07d-4d3d-8713-86c39c0fd773)
 
 ---
 
