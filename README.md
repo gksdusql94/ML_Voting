@@ -39,11 +39,18 @@ This project investigates voter behavior using income data from Washington State
 1. **Linear Regression & Polynomial Regression**: Simple models as a baseline.
 2. **Random Forest**: Best performance, capturing nonlinear relationships in voting patterns.
 3. **SVR (Support Vector Regression)**: Moderate performance, capturing nonlinearity.
+
 4. **Improved Deep Learning (DeepNN)**: Incorporates advanced layers to prevent overfitting and capture intricate patterns in data.
 
 ###  Evaluation Metrics
 - Metrics such as RMSE, MAE, and R² are used to compare model performances, while cross-validation ensures generalization across different data subsets.
+```python
+from sklearn.metrics import mean_squared_error, mean_absolute_error, r2_score
 
+rmse = np.sqrt(mean_squared_error(y_test, y_pred_rf))
+mae = mean_absolute_error(y_test, y_pred_rf)
+r2 = r2_score(y_test, y_pred_rf)
+```
 ---
 
 ##  Results
