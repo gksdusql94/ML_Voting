@@ -1,44 +1,74 @@
-# 🗳️ Machine Learning Analysis of Voting Tendencies by Electoral District, Income-Based Voter Behavior in Washington State
-This project aims to predict voter behavior using income data from Washington State through machine learning models, exploring how socio-economic factors influence voting patterns.
+# 🗳️ Machine Learning Analysis of Voting Tendencies by Electoral District  
+**Income-Based Voter Behavior in Washington State**
 
-## 📁 Project Overview
-This study employs various machine learning models to analyze voting patterns in Washington State, focusing on the impact of income data. The project explores models such as linear regression, polynomial regression with ridge regularization, random forests, and support vector regression. Different evaluation metrics such as RMSE, MAE, and R² are used to determine the most effective model for predicting voter behavior.
+**Author:** Yeonbi Han  
+**Program:** Data Science Master's Student  
+**Institution:** Graduate Center, CUNY  
+**Project:** Spring 2024 Capstone  
+**Contact:** yhan4@gradcenter.cuny.edu  
 
-## 🗳️ Key Objectives
--  **Build models** to predict voter behavior based on income levels.
--  **Collaborate with team members** to analyze additional factors such as age, gender, and education.
--  **Implement a batch-average loss function** to train models without individual-level voting data.
+## 📁 Abstract  
+This project investigates voter behavior using income data from Washington State, employing machine learning to predict voting patterns. The model integrates geographical and income data, improving voter prediction models using batch processing. Collaborating with team members focusing on gender, education, and age-based studies in other states, this project aims to inform policymakers by providing insights into complex electoral dynamics.
 
-## 📑 Methodology
-### 1. Data Collection
--  **Income Data**: Collected from the U.S. Census Bureau.
--  **Voting Data**: Sourced from Harvard’s voting records database.
--  **Geospatial Data**: Acquired using GIS and GeoPandas.
+---
 
-### 2. Preprocessing
--  **Standardization**: Cleaned and standardized datasets using Pandas.
--  **Merging**: Combined income data with voting data across Washington State.
+## 🗂️ Files and Methodology Overview
 
-### 3. Model Development
--  **Models**: Includes `SimpleNN`, `DeepNN`, and traditional algorithms like `Random Forest` and `SVR`.
--  **Optimizers**: Models were fine-tuned using `SGD` and `Adam` optimizers.
+### 1. `240202 NY_YB_MatchTractsWithPrecincts_CentroidMethod.ipynb` & `240209 WA_MatchTractsWithPrecincts_CentroidMethod.ipynb`
+- Utilizes GIS to align electoral precinct centroids with census tracts from NY and WA states, helping in analyzing voter behaviors at a geographic level.
 
-### 4. Evaluation
--  **Metrics**: Evaluated using RMSE, MAE, and R².
--  **Cross-validation**: Applied for model robustness.
+### 2. `240223Filtered Data.ipynb` & `240223Final Data.ipynb`
+- Extracts and filters income data categorized by income levels from Washington State’s census tracts, prepping it for machine learning analysis.
 
-# 📊 Key Findings
--  **Random Forest**: Emerged as the top model with the highest predictive accuracy (RMSE: 0.0796, R²: 0.88).
--  **Batch-Average Loss Function**: Enabled accurate predictions without requiring individual-level data.
--  **Correlations**: Identified significant correlations between income and voting patterns in Washington State, applicable to other regions like Texas and New York.
+### 3. `240308 YB Voting_modeling.ipynb`
+- Implements a basic neural network model (SimpleNN) with income data to predict voting outcomes using preprocessing and normalization techniques.
 
-# 🛠 Tools Used
--  **Python**: Programming language.
--  **Pandas**: Data cleaning and preprocessing.
--  **GeoPandas**: Geospatial analysis.
--  **Scikit-learn**: Machine learning models.
--  **PyTorch**: Neural network development.
+### 4. `240322_different_ml.ipynb`
+- Compares models like Linear Regression, Polynomial Regression, Random Forest, and SVR. The Random Forest model delivered the best performance with an RMSE of 0.0797.
 
-# 📝 Conclusion
-This project demonstrated the power of machine learning in analyzing socio-economic factors like income on voter behavior. Future research could incorporate additional demographic factors and refine model accuracy through enhanced data integration.
+### 5. `240322_improved_deep_voting_model.ipynb`
+- Improved deep learning model (DeepNN) with batch normalization and dropout layers to prevent overfitting and capture complex relationships between income and voting patterns.
+
+### 6. `240417_different_eval.ipynb`
+- Introduces varied evaluation metrics (RMSE, MAE, R²) and cross-validation methods to ensure the model's robustness and improve overall result accuracy.
+
+---
+
+## 🧪 Methodology Overview
+
+###  Data Collection and Integration
+- Geospatial (GIS) and income data from the U.S. Census and WA voting records are integrated using centroid mapping to match census tracts with precincts, allowing for enhanced analysis of voting patterns.
+
+###  Model Development and Testing
+1. **Linear Regression & Polynomial Regression**: Simple models as a baseline.
+2. **Random Forest**: Best performance, capturing nonlinear relationships in voting patterns.
+3. **SVR (Support Vector Regression)**: Moderate performance, capturing nonlinearity.
+4. **Improved Deep Learning (DeepNN)**: Incorporates advanced layers to prevent overfitting and capture intricate patterns in data.
+
+###  Evaluation Metrics
+- Metrics such as RMSE, MAE, and R² are used to compare model performances, while cross-validation ensures generalization across different data subsets.
+
+---
+
+##  Results
+- The **Random Forest model** provided the best accuracy with the lowest RMSE of **0.0797**, followed by SVR and Polynomial Regression. The study demonstrates that integrating income and geospatial data through machine learning leads to effective voting behavior predictions.
+
+---
+
+##  Challenges
+- **GIS Integration**: Aligning different datasets from NY and WA required significant GIS manipulation.
+- **Overfitting**: Initial deep learning models with many layers suffered from overfitting, prompting model simplification.
+- **Income Binning**: Grouping income data into larger intervals improved interpretability without compromising on the granularity.
+
+---
+
+## 🏁 Conclusion
+The **Random Forest model** was most effective in predicting voter behaviors based on income. This framework can be extended by incorporating more demographic variables (e.g., education, age) and applying it to other states to yield broader insights into electoral patterns.
+
+---
+
+## 📚 References
+- **U.S. Census Bureau**  
+- **Harvard University Database**  
+- **GIS Resources**
 
