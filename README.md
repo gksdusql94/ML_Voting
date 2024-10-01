@@ -40,22 +40,25 @@ Geospatial and income data were collected from the U.S. Census and voting record
 import geopandas as gpd # 1. Importing Data and Libraries
 import pandas as pd
 
-# Load census tract and precinct data
-census_blocks = gpd.read_file('zip://path_to_census_blocks')
-precincts = gpd.read_file('zip://path_to_precincts')
+# Filter precincts with overlap_percentage >= 50
+filtered_precincts = overlap_precincts[overlap_precincts['overlap_percentage'] >= 50]
 
-# Align geospatial reference systems
-precincts = precincts.to_crs(census_blocks.crs)
+# Now, filtered_precincts contains only the precincts with overlap_percentage >= 50
+# Visualize the selected census block and precincts that are approximating it
+census_blocks.loc[[CENSUS_BLOCK_INDEX]].explore('STATEFP')
 
-# Find intersecting precincts for a given census block # 2. Calculate Overlap Percentages for Census Tracts and Precincts
-census_block_polygon = census_blocks.loc[0, 'geometry']
-overlap_precincts = precincts[precincts['geometry'].intersects(census_block_polygon)]
-
-# Calculate overlap percentage
-for idx, row in overlap_precincts.iterrows():
-    intersection_area = row['geometry'].intersection(census_block_polygon).area
-    overlap_precincts.at[idx, 'overlap_percentage'] = (intersection_area / row['geometry'].area) * 100
+# Visualize the filtered precincts with their Biden proportion
+filtered_precincts.explore('Biden_proportion')
 ```
+![image](https://github.com/user-attachments/assets/7c8a8cf1-418f-479b-b5fa-c0a9dc3c8e6d)
+```python
+# Show the approximation error
+base = census_blocks.loc[[CENSUS_BLOCK_INDEX]].plot('STATEFP', color='red', alpha=0.5)
+filtered_precincts.plot('STATEFP', color='yellow', ax=base, alpha=0.5)
+```
+![image](https://github.com/user-attachments/assets/c154008d-4aef-4d46-ab8a-cb164e17acc5)
+
+
 ###  Model Development and Testing
 1. **Linear Regression & Polynomial Regression**: Simple models as a baseline.
 ```python
