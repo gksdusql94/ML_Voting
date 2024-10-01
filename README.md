@@ -190,9 +190,9 @@ class DeepNN(nn.Module):
         x = self.relu(self.bn3(self.fc3(x)))
         x = self.fc4(x)
         return x
-```
 # Initialize improved deep learning model
 deep_model = DeepNN()
+```
 
 ###  Evaluation Metrics
 - Metrics such as RMSE, MAE, and R² are used to compare model performances, while cross-validation ensures generalization across different data subsets.
