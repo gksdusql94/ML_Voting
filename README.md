@@ -143,12 +143,19 @@ for epoch in range(500):
     optimizer.step()
     if epoch % 10 == 0:
         print(f'Epoch [{epoch+1}/500], Loss: {loss.item()}')
+plt.plot(losses[10:], label='Training Loss') #The code plots only the data points for the training loss after excluding the first 10 epochs.
+plt.xlabel('Epoch')
+plt.ylabel('Loss')
+plt.legend()
+plt.show()
 
 # Evaluation
 y_pred = model(X_test).detach().numpy()
 rmse = np.sqrt(mean_squared_error(y_test.numpy(), y_pred))
 print(f'RMSE: {rmse}')
 ```
+![image](https://github.com/user-attachments/assets/ab9c81c6-e07d-4d3d-8713-86c39c0fd773)
+
 ---
 
 ##  Results
