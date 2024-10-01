@@ -46,11 +46,14 @@ filtered_precincts = overlap_precincts[overlap_precincts['overlap_percentage'] >
 # Now, filtered_precincts contains only the precincts with overlap_percentage >= 50
 # Visualize the selected census block and precincts that are approximating it
 census_blocks.loc[[CENSUS_BLOCK_INDEX]].explore('STATEFP')
-
+```
+![image](https://github.com/user-attachments/assets/7c8a8cf1-418f-479b-b5fa-c0a9dc3c8e6d)
+```python
 # Visualize the filtered precincts with their Biden proportion
 filtered_precincts.explore('Biden_proportion')
 ```
-![image](https://github.com/user-attachments/assets/7c8a8cf1-418f-479b-b5fa-c0a9dc3c8e6d)
+![image](https://github.com/user-attachments/assets/ea56c1e7-5f92-43a2-80e2-976eddfb9a3e)
+
 ```python
 # Show the approximation error
 base = census_blocks.loc[[CENSUS_BLOCK_INDEX]].plot('STATEFP', color='red', alpha=0.5)
