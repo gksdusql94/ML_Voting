@@ -40,7 +40,8 @@ This project investigates voter behavior using income data from Washington State
 2. **Random Forest**: Best performance, capturing nonlinear relationships in voting patterns.
 3. **SVR (Support Vector Regression)**: Moderate performance, capturing nonlinearity.
 
-4. **Improved Deep Learning (DeepNN)**: Incorporates advanced layers to prevent overfitting and capture intricate patterns in data.
+4. **Simple Deep Learning (DeepNN)**: Incorporates advanced layers to prevent overfitting and capture intricate patterns in data.
+5. **Improved Deep Learning (DeepNN)**
 
 ###  Evaluation Metrics
 - Metrics such as RMSE, MAE, and R² are used to compare model performances, while cross-validation ensures generalization across different data subsets.
