@@ -1,53 +1,44 @@
-# US President Precinct Voting Modeling (ML by State)
+# 🗳️ Machine Learning Analysis of Voting Tendencies by Electoral District, Income-Based Voter Behavior in Washington State
+This project aims to predict voter behavior using income data from Washington State through machine learning models, exploring how socio-economic factors influence voting patterns.
 
-## Project Overview
-This project aims to develop and evaluate machine learning models for predicting voting patterns across different electoral districts, focusing on **income-based voter behavior** in **Washington State**. The project combines income data, geographical information, and voting records to build a predictive model capable of analyzing trends across various demographics and states.
+## 📁 Project Overview
+This study employs various machine learning models to analyze voting patterns in Washington State, focusing on the impact of income data. The project explores models such as linear regression, polynomial regression with ridge regularization, random forests, and support vector regression. Different evaluation metrics such as RMSE, MAE, and R² are used to determine the most effective model for predicting voter behavior.
 
-## Key Objectives
-- Build a machine learning model to predict voter behavior based on **income levels**.
-- Collaborate with team members to integrate additional variables such as **age**, **gender**, and **education**, analyzing how these factors impact voting patterns in different regions, including **Texas** and **New York**.
-- Compare the performance of various machine learning algorithms, including **Random Forest**, **Linear Regression**, **Support Vector Regression (SVR)**, and others, to identify the most accurate model.
-- Design and implement a **batch-average loss function** to predict voting outcomes without relying on individual-level voting data.
+## 🗳️ Key Objectives
+-  **Build models** to predict voter behavior based on income levels.
+-  **Collaborate with team members** to analyze additional factors such as age, gender, and education.
+-  **Implement a batch-average loss function** to train models without individual-level voting data.
 
-## Methodology
+## 📑 Methodology
 ### 1. Data Collection
-   - **Income Data**: Collected through U.S. Census Bureau and filtered to include income levels across Washington's census tracts.
-   - **Voting Data**: Voting records obtained from Harvard's database and electoral precinct data from the **U.S. Census Bureau**.
-   - **Geographical Data**: Incorporated geospatial data using **GIS** and **GeoPandas** to map electoral districts to voting precincts.
+-  **Income Data**: Collected from the U.S. Census Bureau.
+-  **Voting Data**: Sourced from Harvard’s voting records database.
+-  **Geospatial Data**: Acquired using GIS and GeoPandas.
 
-### 2. Data Preprocessing
-   - Cleaned and filtered datasets using **Python** and **Pandas**.
-   - Handled missing values and standardized data for effective model training.
-   - Merged income and voting datasets for comprehensive analysis.
+### 2. Preprocessing
+-  **Standardization**: Cleaned and standardized datasets using Pandas.
+-  **Merging**: Combined income data with voting data across Washington State.
 
 ### 3. Model Development
-   - Developed two machine learning models: **SimpleNN** (basic neural network) and **DeepNN** (multi-layer neural network) to predict voting percentages based on income levels.
-   - Implemented **SGD** and **Adam** optimizers to fine-tune model performance.
-   - Applied **Random Forest**, **Linear Regression**, and **SVR** models to explore other approaches for predicting voting patterns.
+-  **Models**: Includes `SimpleNN`, `DeepNN`, and traditional algorithms like `Random Forest` and `SVR`.
+-  **Optimizers**: Models were fine-tuned using `SGD` and `Adam` optimizers.
 
-### 4. Evaluation Metrics
-   - Evaluated model performance using **Root Mean Squared Error (RMSE)**, **Mean Absolute Error (MAE)**, and **R-squared (R²)** metrics.
-   - Performed cross-validation to ensure generalizability of the models.
+### 4. Evaluation
+-  **Metrics**: Evaluated using RMSE, MAE, and R².
+-  **Cross-validation**: Applied for model robustness.
 
-## Key Findings
-- The **Random Forest** model showed the highest predictive accuracy with the lowest RMSE (0.0796) and the highest R² value (0.88), making it the best fit for this electoral dataset.
-- The **batch-average loss function** provided an innovative solution for training the model without individual voting data.
-- The analysis revealed significant correlations between **income levels** and voting patterns in Washington State, with potential applications in other states like Texas and New York.
+# 📊 Key Findings
+-  **Random Forest**: Emerged as the top model with the highest predictive accuracy (RMSE: 0.0796, R²: 0.88).
+-  **Batch-Average Loss Function**: Enabled accurate predictions without requiring individual-level data.
+-  **Correlations**: Identified significant correlations between income and voting patterns in Washington State, applicable to other regions like Texas and New York.
 
-## Tools Used
-- **Python**: Data processing, model development, and evaluation.
-- **Pandas**: Data cleaning and manipulation.
-- **GeoPandas/GIS**: Geographic analysis and mapping electoral districts.
-- **Scikit-learn**: Model implementation (Random Forest, Linear Regression, SVR).
-- **PyTorch**: Neural network model development (SimpleNN, DeepNN).
+# 🛠 Tools Used
+-  **Python**: Programming language.
+-  **Pandas**: Data cleaning and preprocessing.
+-  **GeoPandas**: Geospatial analysis.
+-  **Scikit-learn**: Machine learning models.
+-  **PyTorch**: Neural network development.
 
-## Conclusion
-This project successfully implemented machine learning models to predict voter behavior based on socio-economic factors. The use of **Random Forest** and the **batch-average loss function** proved effective in understanding voting tendencies without individual-level data. Future improvements include incorporating more demographic factors and refining model accuracy through enhanced data integration.
-
-Integrated income data with geographic information to predict voter behavior and improve model accuracy using batch processing to combine various data sources.
--	Collaborated with team members to analyze variables such as gender, age, and education in other states, including Texas, to broaden the understanding of voting patterns across regions.
--	Utilized Python and GIS tools to calculate geographic centroids for electoral districts, aligning them with precincts, and analyzed the correlation between income levels and voting outcomes.
--	Compared various ML algorithms, including Random Forest, Linear Regression, and SVR. The Random Forest model showed the highest predictive accuracy with an RMSE of 0.0797, outperforming other models.
-
-
+# 📝 Conclusion
+This project demonstrated the power of machine learning in analyzing socio-economic factors like income on voter behavior. Future research could incorporate additional demographic factors and refine model accuracy through enhanced data integration.
 
