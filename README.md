@@ -34,8 +34,28 @@ This project investigates voter behavior using income data from Washington State
 ## 🧪 Methodology Overview
 
 ###  Data Collection and Integration
-- Geospatial (GIS) and income data from the U.S. Census and WA voting records are integrated using centroid mapping to match census tracts with precincts, allowing for enhanced analysis of voting patterns.
+Geospatial and income data were collected from the U.S. Census and voting records from Washington State. GIS techniques (centroid mapping) were used to match electoral precincts with census tracts. After extensive data cleaning and standardization, the final dataset incorporated income levels and election results across various precincts.
 
+```python
+import geopandas as gpd # 1. Importing Data and Libraries
+import pandas as pd
+
+# Load census tract and precinct data
+census_blocks = gpd.read_file('zip://path_to_census_blocks')
+precincts = gpd.read_file('zip://path_to_precincts')
+
+# Align geospatial reference systems
+precincts = precincts.to_crs(census_blocks.crs)
+
+# Find intersecting precincts for a given census block # 2. Calculate Overlap Percentages for Census Tracts and Precincts
+census_block_polygon = census_blocks.loc[0, 'geometry']
+overlap_precincts = precincts[precincts['geometry'].intersects(census_block_polygon)]
+
+# Calculate overlap percentage
+for idx, row in overlap_precincts.iterrows():
+    intersection_area = row['geometry'].intersection(census_block_polygon).area
+    overlap_precincts.at[idx, 'overlap_percentage'] = (intersection_area / row['geometry'].area) * 100
+```
 ###  Model Development and Testing
 1. **Linear Regression & Polynomial Regression**: Simple models as a baseline.
 2. **Random Forest**: Best performance, capturing nonlinear relationships in voting patterns.
