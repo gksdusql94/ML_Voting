@@ -12,6 +12,10 @@ This project investigates voter behavior using income data from Washington State
 
 ### 1. `240202 NY_YB_MatchTractsWithPrecincts_CentroidMethod.ipynb` & `240209 WA_MatchTractsWithPrecincts_CentroidMethod.ipynb`
 - Utilizes GIS to align electoral precinct centroids with census tracts from NY and WA states, helping in analyzing voter behaviors at a geographic level.
+```python
+base_map = census_blocks.plot(column='relative_error',legend=True, figsize=(12, 8))
+```
+![image](https://github.com/user-attachments/assets/57423fb1-9309-4ffc-8ae1-1771e8005d40)
 
 ### 2. `240223Filtered Data.ipynb` & `240223Final Data.ipynb`
 - Extracts and filters income data categorized by income levels from Washington State’s census tracts, prepping it for machine learning analysis.
