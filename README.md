@@ -27,8 +27,40 @@ base_map = census_blocks.plot(column='relative_error',legend=True, figsize=(12, 
 - Compares models like Linear Regression, Polynomial Regression, Random Forest, and SVR. The Random Forest model delivered the best performance with an RMSE of 0.0797.
 
 ### 5. `240322_improved_deep_voting_model.ipynb`
-- Improved deep learning model (DeepNN) with batch normalization and dropout layers to prevent overfitting and capture complex relationships between income and voting patterns.
+This enhanced deep neural network incorporates batch normalization and dropout layers to prevent overfitting while capturing complex relationships between income and voting patterns. Various optimizers, such as ADAM and ADAGRAD, were tested to enhance model performance.
 
+```python
+optimizer2 = optim.Adam(model.parameters(), lr=0.001) #New: SGD ->> ADAM
+#optimizer = torch.optim.SGD(model.parameters(), lr=0.001) : Original
+#optimizer = optim.Nadam(model.parameters(), lr=0.001)
+#optimizer = optim.RMSprop(model.parameters(), lr=0.001)
+
+import torch
+num_epochs = 500
+losses = []
+for epoch in range(num_epochs):
+    for i,(train_X, train_y)  in enumerate(county_dataloader):
+      epoch_loss = 0.0
+      if i<32:
+
+        # Convert lists to PyTorch tensors
+        features = torch.tensor(train_X)
+        target = torch.tensor(train_y)
+
+        # Forward pass, loss computation, and backward pass
+        outputs = model(features)
+        # print(outputs) # issue here
+        loss = custom_loss(outputs, target)
+        optimizer2.zero_grad()
+        loss.backward()
+        optimizer2.step()
+        epoch_loss += loss.item()
+        average_epoch_loss = epoch_loss /50
+       # losses.append(loss.item())
+        losses.append(average_epoch_loss)
+    if epoch % 10 == 0:
+        print(f'Epoch [{epoch+1}/{num_epochs}], Loss: {loss.item()}')
+```
 
 ### 6. `240417_different_eval.ipynb`
 - Introduces varied evaluation metrics (RMSE, MAE, R²) and cross-validation methods to ensure the model's robustness and improve overall result accuracy.
