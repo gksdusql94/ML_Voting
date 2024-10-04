@@ -1,4 +1,4 @@
-# 🗳️ Machine Learning Analysis of Voting Tendencies by Electoral District  
+# 🗳️ US President Precinct Voting modeling ML by States
 **Income-Based Voter Behavior in Washington State**
 
 **Author:** Yeonbi Han  
